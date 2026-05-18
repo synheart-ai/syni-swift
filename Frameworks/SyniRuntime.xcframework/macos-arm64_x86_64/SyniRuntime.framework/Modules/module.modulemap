@@ -4,4 +4,7 @@ framework module SyniRuntime {
     module * { export * }
 
     link "c++"
+    link framework "SystemConfiguration"
+    link framework "Security"
+    link framework "CFNetwork"
 }
