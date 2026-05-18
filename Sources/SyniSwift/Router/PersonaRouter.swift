@@ -70,7 +70,7 @@ final class PersonaRouter: @unchecked Sendable {
                     return engine
                 }
 
-            case .portableLocalEngine:
+            case .local:
                 if policy.allowLocal, let engine = await engineManager.getLocalEngine() {
                     return engine
                 }
@@ -126,7 +126,7 @@ final class PersonaRouter: @unchecked Sendable {
             schemaId: "keyboard.v1",
             grammarId: "keyboard.v1",
             routingPolicy: RoutingPolicy(
-                preferredEngines: [.appleFoundationModels, .portableLocalEngine],
+                preferredEngines: [.appleFoundationModels, .local],
                 allowAppleFM: true,
                 allowLocal: true,
                 allowCloud: false // Keyboard must be fast, no cloud
@@ -147,7 +147,7 @@ final class PersonaRouter: @unchecked Sendable {
             schemaId: "life.coach.v1",
             grammarId: "life.coach.v1",
             routingPolicy: RoutingPolicy(
-                preferredEngines: [.appleFoundationModels, .portableLocalEngine, .cloud],
+                preferredEngines: [.appleFoundationModels, .local, .cloud],
                 allowAppleFM: true,
                 allowLocal: true,
                 allowCloud: true

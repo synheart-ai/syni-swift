@@ -433,7 +433,7 @@ final class EngineTypeTests: XCTestCase {
 
     func testEngineTypeRawValues() {
         XCTAssertEqual(EngineType.appleFoundationModels.rawValue, "apple_fm")
-        XCTAssertEqual(EngineType.portableLocalEngine.rawValue, "local")
+        XCTAssertEqual(EngineType.local.rawValue, "local")
         XCTAssertEqual(EngineType.cloud.rawValue, "cloud")
         XCTAssertEqual(EngineType.fallback.rawValue, "fallback")
     }
