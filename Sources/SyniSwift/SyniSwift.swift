@@ -1,15 +1,19 @@
-// SyniSwift - iOS SDK for Syni
-// Reference implementation per syni-core-spec
-
-// Re-export public API
-@_exported import Foundation
-
-// Public types are exported from their respective files:
-// - Syni (main entry point)
-// - SyniConfig, CloudConfig, AppleFMConfig, LocalEngineConfig
-// - SyniRequest, SyniInput, GenerationOptions
-// - SyniResponse, ResponseMetadata, EngineType
-// - SyniError
-// - Persona, RoutingPolicy, PerformanceBudget, PersonaParams
-// - ModelManager, ModelInfo
-// - KeyboardBridge
+// SyniSwift — Syni SDK for Apple platforms.
+//
+// Public API mirrors `package:syni` (Flutter). The three platform SDKs
+// (`syni-flutter`, `syni-kotlin`, `syni-swift`) share one shape so app
+// code is structurally identical modulo platform idioms (`AsyncSequence` /
+// `Flow` / `Stream`).
+//
+// Public types live alongside this file:
+//   - SyniAgent
+//   - SyniInstallState, SyniInstallStage
+//   - SyniChatResponse, SyniResponseKind, SyniChatEvent
+//   - SyniPersona, SyniSpecPersona, SyniSpecPersonaError
+//   - SyniModelSpec, SyniModels, SyniModelOption,
+//     SyniLocalModel, SyniCloudModel, SyniModelCatalog
+//   - SyniCloudConfig, SyniCloudException
+//   - SyniInstaller, SyniInstallException
+//   - SyniExecutionMode
+//   - SyniPreset, SyniRuntimeRequest, SyniRuntimeResult,
+//     SyniRuntimeStreamEvent, SyniRuntimeError
