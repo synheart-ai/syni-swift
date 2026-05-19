@@ -42,7 +42,7 @@ targets: [
 - Swift 5.9+
 - Xcode 15+
 
-The native runtime ships as an XCFramework (`SyniRuntime.xcframework`). For consumers using SPM via URL, the framework is fetched as a binary target at the linked release; for local-path consumption, run `./Scripts/build-xcframework.sh` to produce a development build (~5 min, requires Rust + Xcode CLT).
+The native runtime ships as an XCFramework (`SyniRuntime.xcframework`). For consumers using SPM via URL, the framework is fetched as a binary target at the linked release; for local-path consumption, run `./Scripts/build-xcframework.sh` to produce a development build (~5 min; see the script for toolchain prerequisites).
 
 ## Usage
 
