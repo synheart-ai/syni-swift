@@ -23,7 +23,7 @@ public struct SyniConfig: Sendable {
     /// Configuration for Apple Foundation Models engine.
     public let appleFMConfig: AppleFMConfig?
 
-    /// Configuration for the PortableLocalEngine.
+    /// Configuration for the LocalEngine (syni-runtime).
     public let localEngineConfig: LocalEngineConfig?
 
     /// App group identifier for keyboard extension communication.
@@ -90,7 +90,7 @@ public struct AppleFMConfig: Sendable {
     }
 }
 
-/// Configuration for the PortableLocalEngine (llama.cpp based).
+/// Configuration for the LocalEngine (syni-runtime / llama.cpp based).
 public struct LocalEngineConfig: Sendable {
     /// Number of threads to use for inference.
     public let threadCount: Int

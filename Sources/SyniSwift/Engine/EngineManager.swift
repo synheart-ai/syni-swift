@@ -7,7 +7,7 @@ final class EngineManager: @unchecked Sendable {
     private let modelManager: ModelManager
 
     private var appleFMEngine: AppleFMEngine?
-    private var localEngine: PortableLocalEngine?
+    private var localEngine: LocalEngine?
     private let lock = NSLock()
 
     init(
@@ -40,8 +40,8 @@ final class EngineManager: @unchecked Sendable {
         return await engine.isAvailable ? engine : nil
     }
 
-    /// Returns the PortableLocalEngine if available.
-    func getLocalEngine() async -> PortableLocalEngine? {
+    /// Returns the LocalEngine if available.
+    func getLocalEngine() async -> LocalEngine? {
         lock.lock()
         if let existing = localEngine {
             lock.unlock()
@@ -53,7 +53,7 @@ final class EngineManager: @unchecked Sendable {
             return nil
         }
 
-        let engine = PortableLocalEngine(config: config, modelManager: modelManager)
+        let engine = LocalEngine(config: config, modelManager: modelManager)
         localEngine = engine
         lock.unlock()
 

@@ -98,8 +98,8 @@ public enum EngineType: String, Sendable, Codable {
     /// Apple Foundation Models (on-device).
     case appleFoundationModels = "apple_fm"
 
-    /// PortableLocalEngine (llama.cpp based).
-    case portableLocalEngine = "local"
+    /// LocalEngine (syni-runtime / llama.cpp based).
+    case local = "local"
 
     /// Syni cloud gateway.
     case cloud = "cloud"

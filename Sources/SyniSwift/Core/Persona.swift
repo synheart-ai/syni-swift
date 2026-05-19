@@ -55,14 +55,14 @@ public struct RoutingPolicy: Sendable, Codable {
     /// Whether Apple Foundation Models are allowed for this persona.
     public let allowAppleFM: Bool
 
-    /// Whether local PortableLocalEngine is allowed.
+    /// Whether local engine (SyniRuntime) is allowed.
     public let allowLocal: Bool
 
     /// Whether cloud fallback is allowed.
     public let allowCloud: Bool
 
     public init(
-        preferredEngines: [EngineType] = [.appleFoundationModels, .portableLocalEngine, .cloud],
+        preferredEngines: [EngineType] = [.appleFoundationModels, .local, .cloud],
         allowAppleFM: Bool = true,
         allowLocal: Bool = true,
         allowCloud: Bool = true
