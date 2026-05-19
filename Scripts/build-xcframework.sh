@@ -33,16 +33,19 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
+# Log helpers write to stderr so command substitutions
+# (e.g. `path=$(create_framework ...)`) don't pick them up alongside
+# the intended return value.
 log_info() {
-    echo -e "${GREEN}[INFO]${NC} $1"
+    echo -e "${GREEN}[INFO]${NC} $1" >&2
 }
 
 log_warn() {
-    echo -e "${YELLOW}[WARN]${NC} $1"
+    echo -e "${YELLOW}[WARN]${NC} $1" >&2
 }
 
 log_error() {
-    echo -e "${RED}[ERROR]${NC} $1"
+    echo -e "${RED}[ERROR]${NC} $1" >&2
 }
 
 # Rust targets for Apple platforms
@@ -79,8 +82,26 @@ build_target() {
     local target=$1
     log_info "Building for target: $target"
 
+    # Pin deployment targets so cargo's linker doesn't emit older-iOS
+    # min versions that miss intrinsics (e.g. ___chkstk_darwin) used by
+    # transitive Rust deps. Values match the Info.plist below.
+    local ios_target="16.0"
+    local macos_target="13.0"
+
     cd "$RUNTIME_DIR"
-    cargo build --release --target "$target" -p syni-ffi
+    case "$target" in
+        *-apple-ios|*-apple-ios-sim)
+            IPHONEOS_DEPLOYMENT_TARGET="$ios_target" \
+                cargo build --release --target "$target" -p syni_ffi
+            ;;
+        *-apple-darwin)
+            MACOSX_DEPLOYMENT_TARGET="$macos_target" \
+                cargo build --release --target "$target" -p syni_ffi
+            ;;
+        *)
+            cargo build --release --target "$target" -p syni_ffi
+            ;;
+    esac
 }
 
 # Create universal library from multiple architectures
@@ -131,6 +152,11 @@ EOF
 
     # Create module map
     mkdir -p "$framework_dir/Modules"
+    # Frameworks referenced by transitive Rust deps:
+    # - SystemConfiguration: proxy / reachability symbols pulled in by reqwest
+    # - Security: TLS via the system Security framework
+    # - CFNetwork: networking primitives used by reqwest's URL parser
+    # libc++ is required because syni-core links candle's C++ tokenizer.
     cat > "$framework_dir/Modules/module.modulemap" << EOF
 framework module ${FRAMEWORK_NAME} {
     umbrella header "${FRAMEWORK_NAME}.h"
@@ -138,6 +164,9 @@ framework module ${FRAMEWORK_NAME} {
     module * { export * }
 
     link "c++"
+    link framework "SystemConfiguration"
+    link framework "Security"
+    link framework "CFNetwork"
 }
 EOF
 

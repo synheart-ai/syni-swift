@@ -19,3 +19,10 @@ timeline.xctimeline
 playground.xcworkspace
 
 docs/*
+
+# Built XCFramework binaries — produced by Scripts/build-xcframework.sh.
+# Keep the framework metadata (Info.plist, Headers/, Modules/) tracked so
+# the XCFramework structure is reviewable in PRs, but the static-archive
+# binaries are ~70–140 MB each and should be rebuilt locally;
+# distribute via GitHub Releases when shipping.
+Frameworks/SyniRuntime.xcframework/*/SyniRuntime.framework/SyniRuntime
