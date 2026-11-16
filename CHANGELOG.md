@@ -5,6 +5,16 @@ All notable changes to this package will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Documentation
+
+- The runtime install path is
+  `synheart/vendor/syni-runtime/ios/SyniRuntime.xcframework` from syni-runtime
+  0.6.0. The README, the podspec and the source comments named the folder above
+  it. The README now says how to re-point the Xcode framework entry after
+  upgrading.
+
 ## [0.0.4] - 2026-05-26
 
 ### Changed (BREAKING — rename, no code change)

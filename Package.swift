@@ -15,7 +15,7 @@
 //     synheart install runtime syni
 //
 // That writes `SyniRuntime.xcframework` into the consumer's project at
-// `<app>/synheart/vendor/syni-runtime/`. Xcode picks it up at link
+// `<app>/synheart/vendor/syni-runtime/ios/`. Xcode picks it up at link
 // time via a "Frameworks, Libraries, and Embedded Content" entry. The
 // SwiftPM package here resolves all C symbols at runtime via
 // `dlsym(RTLD_DEFAULT)` — there is no `binaryTarget`, so cloning this

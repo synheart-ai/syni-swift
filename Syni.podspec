@@ -20,7 +20,7 @@ native core plus the Synheart cloud agent API.
 
   # Native runtime is shipped by the `synheart` CLI, not by this pod.
   # Run `synheart install runtime syni` once in your project; it writes
-  # `SyniRuntime.xcframework` to `<app>/synheart/vendor/syni-runtime/`.
+  # `SyniRuntime.xcframework` to `<app>/synheart/vendor/syni-runtime/ios/`.
   # Add that framework to your Xcode target under General →
   # Frameworks, Libraries, and Embedded Content. SyniRuntimeBridge
   # resolves all C symbols at runtime via `dlsym(RTLD_DEFAULT)`, so the

@@ -44,7 +44,7 @@ public struct SyniRuntimeError: Error, Equatable, Sendable {
 ///
 /// The native runtime is shipped by the `synheart` CLI:
 /// `synheart install runtime syni` writes the XCFramework / dylib
-/// into `<app>/synheart/vendor/syni-runtime/`. Xcode picks it up at
+/// into `<app>/synheart/vendor/syni-runtime/ios/`. Xcode picks it up at
 /// link time; SwiftPM never sees the binary.
 private enum SyniNative {
     typealias NewWithModelFn  = @convention(c) (UnsafePointer<CChar>?) -> OpaquePointer?
