@@ -64,9 +64,15 @@ curl -fsSL https://synheart.sh/install | sh
 synheart install runtime syni
 ```
 
-That writes `SyniRuntime.xcframework` to `<your-project>/synheart/vendor/syni-runtime/`.
-Add the framework to your Xcode target under
+That writes the framework to
+`<your-project>/synheart/vendor/syni-runtime/ios/SyniRuntime.xcframework`.
+Add it to your Xcode target under
 **General → Frameworks, Libraries, and Embedded Content**.
+
+**Upgrading from syni-runtime 0.5.x or earlier.** Earlier runtimes installed the
+framework one level up, at `synheart/vendor/syni-runtime/SyniRuntime.xcframework`.
+After `synheart install runtime syni`, point the Xcode entry at the `ios/` path
+above and delete the old framework folder.
 
 The SwiftPM package itself has zero binary dependencies — `SyniRuntimeBridge`
 resolves all C symbols via `dlsym(RTLD_DEFAULT)` at runtime. You can build
