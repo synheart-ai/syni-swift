@@ -1,9 +1,19 @@
 version: 2
+
 updates:
-  - package-ecosystem: "github-actions"
+  - package-ecosystem: github-actions
     directory: "/"
     schedule:
-      interval: "weekly"
-      day: "monday"
+      interval: weekly
+      day: saturday
+      time: "10:00"
+      timezone: Africa/Addis_Ababa
     commit-message:
-      prefix: "ci"
+      prefix: ci
+    groups:
+      dependency-updates:
+        patterns: ["*"]
+    ignore:
+      # Keep major upgrades separate for manual review.
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
