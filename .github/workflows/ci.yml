@@ -33,3 +33,13 @@ jobs:
             -destination 'generic/platform=iOS' \
             -skipMacroValidation \
             CODE_SIGNING_ALLOWED=NO
+
+  lint:
+    name: Lint
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install SwiftLint
+        run: brew install swiftlint
+      - name: SwiftLint
+        run: swiftlint lint --strict --config .swiftlint.yml
